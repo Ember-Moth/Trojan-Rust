@@ -1,8 +1,8 @@
-# Trojan-R
+# Trojan-Rust
 
 高性能的 Trojan 代理，使用 Rust 实现。为嵌入式设备或低性能机器设计。R 意为 **R**ust / **R**apid。
 
-**Trojan-R 目前为实验性项目，仍处于重度开发中，协议、接口和配置文件格式均可能改变，请勿用于任何生产环境。**
+**Trojan-Rust 目前为实验性项目，仍处于重度开发中，协议、接口和配置文件格式均可能改变，请勿用于任何生产环境。**
 
 ## 特性
 
@@ -10,7 +10,7 @@
 
     牺牲部分灵活性，采用激进的性能优化策略以极力减少不必要的开销。采用[更高效](https://jbp.io/2019/07/01/rustls-vs-openssl-performance.html)的 `rustls` （相较 openssl）建立 TLS 隧道以提升加解密的性能表现。
 
-    使用 tokio 异步运行时，允许 `Trojan-R` 同时使用所有 CPU 核心，保证低时延和高效的吞吐能力。
+    使用 tokio 异步运行时，允许 `Trojan-Rust` 同时使用所有 CPU 核心，保证低时延和高效的吞吐能力。
 
     > 需要更多 benchmark 数据和更多优化
 
@@ -30,15 +30,15 @@
 
 - 密码学安全
 
-    使用 `rustls` 建立 TLS 加密安全信道，过时的或不安全的密码学套件[均被禁用](https://docs.rs/rustls/0.18.1/rustls/#non-features)。`Trojan-R` 强制开启服务器证书校验以防止中间人攻击。
+    使用 `rustls` 建立 TLS 加密安全信道，过时的或不安全的密码学套件[均被禁用](https://docs.rs/rustls/0.18.1/rustls/#non-features)。`Trojan-Rust` 强制开启服务器证书校验以防止中间人攻击。
 
 - 隐蔽传输
 
-    `Trojan-R` 使用 TLS 建立代理隧道，难以从正常 TLS 流量中被区分。支持协议回落，在遭到主动探测时将与普通 TLS 服务器表现一致。
+    `Trojan-Rust` 使用 TLS 建立代理隧道，难以从正常 TLS 流量中被区分。支持协议回落，在遭到主动探测时将与普通 TLS 服务器表现一致。
 
 - 跨平台支持
 
-    `Trojan-R` 可被交叉编译，支持 Android， Linux，Windows 和 MacOS 等操作系统，以及 x86，x86_64，armv7，aarch64 等硬件平台。
+    `Trojan-Rust` 可被交叉编译，支持 Android， Linux，Windows 和 MacOS 等操作系统，以及 x86，x86_64，armv7，aarch64 等硬件平台。
 
 ## 非特性
 
@@ -52,15 +52,15 @@
 
 - 透明代理
 
-如果需要实现上述功能，请使用其他类似工具与 `Trojan-R` 组合实现。
+如果需要实现上述功能，请使用其他类似工具与 `Trojan-Rust` 组合实现。
 
 ## 设计原则
 
 - 安全性
 
-    `Trojan-R` 不涉及底层操作，且目前的性能瓶颈与其无关，无使用 unsafe rust 的必要。协议回落和 TLS 配置等安全敏感代码经过仔细考虑和审计，同时也欢迎更多来自开源社区的安全审计。
+    `Trojan-Rust` 不涉及底层操作，且目前的性能瓶颈与其无关，无使用 unsafe rust 的必要。协议回落和 TLS 配置等安全敏感代码经过仔细考虑和审计，同时也欢迎更多来自开源社区的安全审计。
 
-    目前 `Trojan-R` 使用 `#![forbid(unsafe_code)]` 禁用 unsafe rust。如未来有必要使用 unsafe rust 时，必须经过严格审计和测试。
+    目前 `Trojan-Rust` 使用 `#![forbid(unsafe_code)]` 禁用 unsafe rust。如未来有必要使用 unsafe rust 时，必须经过严格审计和测试。
 
 - 使用静态分发而非动态分发
 
@@ -76,7 +76,7 @@
 
 ## 部署和使用
 
-`Trojan-R` 使用 toml 进行配置，参考 `config` 文件夹下配置文件。
+`Trojan-Rust` 使用 toml 进行配置，参考 `config` 文件夹下配置文件。
 
 ## 编译
 
